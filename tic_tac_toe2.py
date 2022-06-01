@@ -7,8 +7,7 @@ import start
 import random
 
 my_list = []
-
-class Start(QtWidgets.QMainWindow, start.Ui_MainWindow):
+class StartW(QtWidgets.QMainWindow, start.Ui_MainWindow):
     def __init__(self):
         super().__init__()
         self.setupUi(self)
@@ -49,20 +48,124 @@ class TicTacToeGame(QtWidgets.QMainWindow, TicTacToe.Ui_MainWindow):
         self.setupUi(self)
         self.pushButton.clicked.connect(self.close)
         self.pushButton_2.clicked.connect(self.evt_click)
+        self.pushButton_3.clicked.connect(self.clear_p)
+        self.pushButton_4.clicked.connect(self.start_menu)
         self.tableWidget.cellClicked.connect(self.cell_was_clicked)
-        self.label.setText('Игра Насосы - Вентиляторы')
-        self.label.resize(400, 25)
         self.label_3.setText('Насосы')
+        self.win_game_X = 0
+        self.win_game_O = 0
+        self.label_6.setText(f'Счет  {self.win_game_X}  : {self.win_game_O}')
         self.win_X = {}
         self.game_go = True
         self.my_row = 0
         self.my_column = 0
-        grid = QGridLayout()
+        self.count = 0
+        self.clear_p()
+        # self.start_window = StartW()
+
+
+    def start_menu(self):
+        self.hide()
+        self.start_window.show()
+
+
+    def clear_p(self):
+        self.my_list = []
+        self.win_X = {}
+        self.game_go = True
+        self.my_row = 0
+        self.my_column = 0
+        self.count = 0
+        self.tableWidget.clear()
+        self.pushButton_2.setEnabled(True)
         for i in range(0, 3):
             for j in range(0, 3):
                 self.tableWidget.setItem(i, j, QTableWidgetItem(''))
 
-        self.count = 0
+    def win_game_func(self, marker, metka):
+        self.win_game = False
+        if (self.tableWidget.item(0, 0).text() == marker) and (
+                self.tableWidget.item(0, 1).text() == marker) and (self.tableWidget.item(0, 2).text() == marker):
+            self.label_5.setText(metka)
+            self.label_3.setText('')
+            self.pushButton_2.setEnabled(False)
+            if marker == 'X':
+                self.win_game_X += 1
+            else:
+                self.win_game_O += 1
+            self.label_6.setText(f'Счет  {self.win_game_X}  : {self.win_game_O}')
+        elif (self.tableWidget.item(1, 0).text() == marker) and (self.tableWidget.item(1, 1).text() == marker) and (
+                self.tableWidget.item(1, 2).text() == marker):
+            self.label_5.setText(metka)
+            self.label_3.setText('')
+            self.pushButton_2.setEnabled(False)
+            if marker == 'X':
+                self.win_game_X += 1
+            else:
+                self.win_game_O += 1
+            self.label_6.setText(f'Счет  {self.win_game_X}  : {self.win_game_O}')
+        elif (self.tableWidget.item(2, 0).text() == marker) and (self.tableWidget.item(2, 1).text() == marker) and (
+                self.tableWidget.item(2, 2).text() == marker):
+            self.label_5.setText(metka)
+            self.label_3.setText('')
+            self.pushButton_2.setEnabled(False)
+            if marker == 'X':
+                self.win_game_X += 1
+            else:
+                self.win_game_O += 1
+            self.label_6.setText(f'Счет  {self.win_game_X}  : {self.win_game_O}')
+        elif (self.tableWidget.item(0, 0).text() == marker) and (self.tableWidget.item(1, 0).text() == marker) and (
+                self.tableWidget.item(2, 0).text() == marker):
+            self.label_5.setText(metka)
+            self.label_3.setText('')
+            self.pushButton_2.setEnabled(False)
+            if marker == 'X':
+                self.win_game_X += 1
+            else:
+                self.win_game_O += 1
+            self.label_6.setText(f'Счет  {self.win_game_X}  : {self.win_game_O}')
+        elif (self.tableWidget.item(0, 1).text() == marker) and (self.tableWidget.item(1, 1).text() == marker) and (
+                self.tableWidget.item(2, 1).text() == marker):
+            self.label_5.setText(metka)
+            self.label_3.setText('')
+            self.pushButton_2.setEnabled(False)
+            if marker == 'X':
+                self.win_game_X += 1
+            else:
+                self.win_game_O += 1
+            self.label_6.setText(f'Счет  {self.win_game_X}  : {self.win_game_O}')
+        elif (self.tableWidget.item(0, 2).text() == marker) and (self.tableWidget.item(1, 2).text() == marker) and (
+                self.tableWidget.item(2, 2).text() == marker):
+            self.label_5.setText(metka)
+            self.label_3.setText('')
+            self.pushButton_2.setEnabled(False)
+            if marker == 'X':
+                self.win_game_X += 1
+            else:
+                self.win_game_O += 1
+            self.label_6.setText(f'Счет  {self.win_game_X}  : {self.win_game_O}')
+        elif (self.tableWidget.item(0, 0).text() == marker) and (self.tableWidget.item(1, 1).text() == marker) and (
+                self.tableWidget.item(2, 2).text() == marker):
+            self.label_5.setText(metka)
+            self.label_3.setText('')
+            self.pushButton_2.setEnabled(False)
+            if marker == 'X':
+                self.win_game_X += 1
+            else:
+                self.win_game_O += 1
+            self.label_6.setText(f'Счет  {self.win_game_X}  : {self.win_game_O}')
+        elif (self.tableWidget.item(0, 2).text() == marker) and (self.tableWidget.item(1, 1).text() == marker) and (
+                self.tableWidget.item(2, 0).text() == marker):
+            self.label_5.setText(metka)
+            self.label_3.setText('')
+            self.pushButton_2.setEnabled(False)
+            if marker == 'X':
+                self.win_game_X += 1
+            else:
+                self.win_game_O += 1
+            self.label_6.setText(f'Счет  {self.win_game_X}  : {self.win_game_O}')
+        # return self.win_game
+
 
     def evt_click(self):
         self.item = ''
@@ -74,48 +177,7 @@ class TicTacToeGame(QtWidgets.QMainWindow, TicTacToe.Ui_MainWindow):
             self.win_X[self.count] = (self.tableWidget.currentRow(), self.tableWidget.currentColumn())
             self.tableWidget.setItem(self.tableWidget.currentRow(), self.tableWidget.currentColumn(), self.item)
             if self.count > 3:
-                if (self.tableWidget.item(0, 0).text() == 'X') and (
-                        self.tableWidget.item(0, 1).text() == 'X') and (self.tableWidget.item(0, 2).text() == 'X'):
-                    self.label_5.setText('Насосы')
-                    self.label_3.setText('')
-                    self.pushButton_2.setEnabled(False)
-                elif (self.tableWidget.item(1, 0).text() == 'X') and (self.tableWidget.item(1, 1).text() == 'X') and (
-                        self.tableWidget.item(1, 2).text() == 'X'):
-                    self.label_5.setText('Насосы')
-                    self.label_3.setText('')
-                    self.pushButton_2.setEnabled(False)
-                elif (self.tableWidget.item(2, 0).text() == 'X') and (self.tableWidget.item(2, 1).text() == 'X') and (
-                        self.tableWidget.item(2, 2).text() == 'X'):
-                    self.label_5.setText('Насосы')
-                    self.label_3.setText('')
-                    self.pushButton_2.setEnabled(False)
-                elif (self.tableWidget.item(0, 0).text() == 'X') and (self.tableWidget.item(1, 0).text() == 'X') and (
-                        self.tableWidget.item(2, 0).text() == 'X'):
-                    self.label_5.setText('Насосы')
-                    self.label_3.setText('')
-                    self.pushButton_2.setEnabled(False)
-                elif (self.tableWidget.item(0, 1).text() == 'X') and (self.tableWidget.item(1, 1).text() == 'X') and (
-                        self.tableWidget.item(2, 1).text() == 'X'):
-                    self.label_5.setText('Насосы')
-                    self.label_3.setText('')
-                    self.pushButton_2.setEnabled(False)
-                elif (self.tableWidget.item(0, 2).text() == 'X') and (self.tableWidget.item(1, 2).text() == 'X') and (
-                        self.tableWidget.item(2, 2).text() == 'X'):
-                    self.label_5.setText('Насосы')
-                    self.label_3.setText('')
-                    self.pushButton_2.setEnabled(False)
-                elif (self.tableWidget.item(0, 0).text() == 'X') and (self.tableWidget.item(1, 1).text() == 'X') and (
-                        self.tableWidget.item(2, 2).text() == 'X'):
-                    self.label_5.setText('Насосы')
-                    self.label_3.setText('')
-                    self.pushButton_2.setEnabled(False)
-                elif (self.tableWidget.item(0, 2).text() == 'X') and (self.tableWidget.item(1, 1).text() == 'X') and (
-                        self.tableWidget.item(2, 0).text() == 'X'):
-                    self.label_5.setText('Насосы')
-                    self.label_3.setText('')
-                    self.pushButton_2.setEnabled(False)
-                    self.label_5.resize(400, 25)
-
+                self.win_game_func('X', 'Насосы')
         else:
             self.label_3.setText('Насосы')
             self.item = QTableWidgetItem('O')
@@ -127,64 +189,10 @@ class TicTacToeGame(QtWidgets.QMainWindow, TicTacToe.Ui_MainWindow):
             # print(self.win_X)
             self.tableWidget.setItem(self.tableWidget.currentRow(), self.tableWidget.currentColumn(), self.item)
             if self.count > 3:
-                if (self.tableWidget.item(0, 0).text() == 'O') and (self.tableWidget.item(0, 1).text() == 'O') and (
-                        self.tableWidget.item(0, 2).text() == 'O'):
-                    self.label_5.setText('Вентиляторы')
-                    self.label_3.setText('')
-                    self.pushButton_2.setEnabled(False)
-                elif (self.tableWidget.item(1, 0).text() == 'O') and (self.tableWidget.item(1, 1).text() == 'O') and (
-                        self.tableWidget.item(1, 2).text() == 'O'):
-                    self.label_5.setText('Вентиляторы')
-                    self.label_3.setText('')
-                    self.pushButton_2.setEnabled(False)
-                elif (self.tableWidget.item(2, 0).text() == 'O') and (self.tableWidget.item(2, 1).text() == 'O') and (
-                        self.tableWidget.item(2, 2).text() == 'O'):
-                    self.label_5.setText('Вентиляторы')
-                    self.pushButton_2.setEnabled(False)
-                elif (self.tableWidget.item(0, 0).text() == 'O') and (self.tableWidget.item(1, 0).text() == 'O') and (
-                        self.tableWidget.item(2, 0).text() == 'O'):
-                    self.label_5.setText('Вентиляторы')
-                    self.label_3.setText('')
-                    self.pushButton_2.setEnabled(False)
-                elif (self.tableWidget.item(0, 1).text() == 'O') and (self.tableWidget.item(1, 1).text() == 'O') and (
-                        self.tableWidget.item(2, 1).text() == 'O'):
-                    self.label_5.setText('Вентиляторы')
-                    self.label_3.setText('')
-                    self.pushButton_2.setEnabled(False)
-                elif (self.tableWidget.item(0, 2).text() == 'O') and (self.tableWidget.item(1, 2).text() == 'O') and (
-                        self.tableWidget.item(2, 2).text() == 'O'):
-                    self.label_5.setText('Вентиляторы')
-                    self.label_3.setText('')
-                    self.pushButton_2.setEnabled(False)
-                elif (self.tableWidget.item(0, 0).text() == 'O') and (self.tableWidget.item(1, 1).text() == 'O') and (
-                        self.tableWidget.item(2, 2).text() == 'O'):
-                    self.label_5.setText('Вентиляторы')
-                    self.label_3.setText('')
-                    self.pushButton_2.setEnabled(False)
-                elif (self.tableWidget.item(2, 0).text() == 'O') and (self.tableWidget.item(1, 1).text() == 'O') and (
-                        self.tableWidget.item(0, 2).text() == 'O'):
-                    self.label_5.setText('Вентиляторы')
-                    self.label_3.setText('')
-                    self.pushButton_2.setEnabled(False)
-                    self.label_5.resize(400, 25)
+                self.win_game_func('O', 'Вентиляторы')
         self.count += 1
 
-    def win_game(self, marker):
-
-        if self.count > 2:
-            for i in range(0, 3):
-                count = 0
-                for j in range(0, 3):
-                    if self.tableWidget.item(i, j).text() == marker:
-                        count += 1
-                    elif self.tableWidget.item(j, i).text() == marker:
-                        count += 1
-                    if count == 3:
-                        print('win', marker)
-
     def cell_was_clicked(self, row, column):
-        self.win_game('Насосы')
-        self.win_game('Вентиляторы')
         self.my_row = self.tableWidget.item(row, column).row()
         self.my_column = self.tableWidget.item(row, column).column()
 
@@ -201,14 +209,7 @@ class TicTacToeGameAI(QtWidgets.QMainWindow, TicTacToe.Ui_MainWindow):
         self.my_row = 0
         self.my_column = 0
         self.count = 0
-        for i in range(0, 3):
-            for j in range(0, 3):
-                self.tableWidget.setItem(i, j, QTableWidgetItem(''))
-                my_list.append([i,j])
-
-
-
-
+        TicTacToeGame.clear_p(self)
 
 
     def evt_click(self):
@@ -223,47 +224,7 @@ class TicTacToeGameAI(QtWidgets.QMainWindow, TicTacToe.Ui_MainWindow):
             self.win_X[self.count] = (self.tableWidget.currentRow(), self.tableWidget.currentColumn())
             self.tableWidget.setItem(self.tableWidget.currentRow(), self.tableWidget.currentColumn(), self.item)
             if self.count > 3:
-                if (self.tableWidget.item(0, 0).text() == 'X') and (self.tableWidget.item(0, 1).text() == 'X') and (
-                        self.tableWidget.item(0, 2).text() == 'X'):
-                    self.label_5.setText('Насосы')
-                    self.label_3.setText('')
-                    self.pushButton_2.setEnabled(False)
-                elif (self.tableWidget.item(1, 0).text() == 'X') and (self.tableWidget.item(1, 1).text() == 'X') and (
-                        self.tableWidget.item(1, 2).text() == 'X'):
-                    self.label_5.setText('Насосы')
-                    self.label_3.setText('')
-                    self.pushButton_2.setEnabled(False)
-                elif (self.tableWidget.item(2, 0).text() == 'X') and (self.tableWidget.item(2, 1).text() == 'X') and (
-                        self.tableWidget.item(2, 2).text() == 'X'):
-                    self.label_5.setText('Насосы')
-                    self.label_3.setText('')
-                    self.pushButton_2.setEnabled(False)
-                elif (self.tableWidget.item(0, 0).text() == 'X') and (self.tableWidget.item(1, 0).text() == 'X') and (
-                        self.tableWidget.item(2, 0).text() == 'X'):
-                    self.label_5.setText('Насосы')
-                    self.label_3.setText('')
-                    self.pushButton_2.setEnabled(False)
-                elif (self.tableWidget.item(0, 1).text() == 'X') and (self.tableWidget.item(1, 1).text() == 'X') and (
-                        self.tableWidget.item(2, 1).text() == 'X'):
-                    self.label_5.setText('Насосы')
-                    self.label_3.setText('')
-                    self.pushButton_2.setEnabled(False)
-                elif (self.tableWidget.item(0, 2).text() == 'X') and (self.tableWidget.item(1, 2).text() == 'X') and (
-                        self.tableWidget.item(2, 2).text() == 'X'):
-                    self.label_5.setText('Насосы')
-                    self.label_3.setText('')
-                    self.pushButton_2.setEnabled(False)
-                elif (self.tableWidget.item(0, 0).text() == 'X') and (self.tableWidget.item(1, 1).text() == 'X') and (
-                        self.tableWidget.item(2, 2).text() == 'X'):
-                    self.label_5.setText('Насосы')
-                    self.label_3.setText('')
-                    self.pushButton_2.setEnabled(False)
-                elif (self.tableWidget.item(0, 2).text() == 'X') and (self.tableWidget.item(1, 1).text() == 'X') and (
-                        self.tableWidget.item(2, 0).text() == 'X'):
-                    self.label_5.setText('Насосы')
-                    self.label_3.setText('')
-                    self.pushButton_2.setEnabled(False)
-                    self.label_5.resize(400, 25)
+                self.win_game_func('X', 'Насосы')
 
         self.count += 1
         print(self.count)
@@ -305,46 +266,8 @@ class TicTacToeGameAI(QtWidgets.QMainWindow, TicTacToe.Ui_MainWindow):
             # print(self.win_X)
             self.tableWidget.setItem(self.tableWidget.currentRow(), self.tableWidget.currentColumn(), self.item)
             if self.count > 3:
-                if (self.tableWidget.item(0, 0).text() == 'O') and (self.tableWidget.item(0, 1).text() == 'O') and (
-                        self.tableWidget.item(0, 2).text() == 'O'):
-                    self.label_5.setText('Вентиляторы')
-                    self.label_3.setText('')
-                    self.pushButton_2.setEnabled(False)
-                elif (self.tableWidget.item(1, 0).text() == 'O') and (self.tableWidget.item(1, 1).text() == 'O') and (
-                        self.tableWidget.item(1, 2).text() == 'O'):
-                    self.label_5.setText('Вентиляторы')
-                    self.label_3.setText('')
-                    self.pushButton_2.setEnabled(False)
-                elif (self.tableWidget.item(2, 0).text() == 'O') and (self.tableWidget.item(2, 1).text() == 'O') and (
-                        self.tableWidget.item(2, 2).text() == 'O'):
-                    self.label_5.setText('Вентиляторы')
-                    self.pushButton_2.setEnabled(False)
-                elif (self.tableWidget.item(0, 0).text() == 'O') and (self.tableWidget.item(1, 0).text() == 'O') and (
-                        self.tableWidget.item(2, 0).text() == 'O'):
-                    self.label_5.setText('Вентиляторы')
-                    self.label_3.setText('')
-                    self.pushButton_2.setEnabled(False)
-                elif (self.tableWidget.item(0, 1).text() == 'O') and (self.tableWidget.item(1, 1).text() == 'O') and (
-                        self.tableWidget.item(2, 1).text() == 'O'):
-                    self.label_5.setText('Вентиляторы')
-                    self.label_3.setText('')
-                    self.pushButton_2.setEnabled(False)
-                elif (self.tableWidget.item(0, 2).text() == 'O') and (self.tableWidget.item(1, 2).text() == 'O') and (
-                        self.tableWidget.item(2, 2).text() == 'O'):
-                    self.label_5.setText('Вентиляторы')
-                    self.label_3.setText('')
-                    self.pushButton_2.setEnabled(False)
-                elif (self.tableWidget.item(0, 0).text() == 'O') and (self.tableWidget.item(1, 1).text() == 'O') and (
-                        self.tableWidget.item(2, 2).text() == 'O'):
-                    self.label_5.setText('Вентиляторы')
-                    self.label_3.setText('')
-                    self.pushButton_2.setEnabled(False)
-                elif (self.tableWidget.item(2, 0).text() == 'O') and (self.tableWidget.item(1, 1).text() == 'O') and (
-                        self.tableWidget.item(0, 2).text() == 'O'):
-                    self.label_5.setText('Вентиляторы')
-                    self.label_3.setText('')
-                    self.pushButton_2.setEnabled(False)
-                    
+                self.win_game_func('O', 'Вентиляторы')
+
             self.count += 1
 
 
@@ -360,7 +283,7 @@ if __name__ == '__main__':
     app = QApplication(sys.argv)
     palette = QPalette()
     palette.setBrush(QPalette.Background, QBrush(QPixmap("C:/Users/DMalcev/PycharmProjects/pythonProject2/ris.jpg")))
-    Window = Start()
+    Window = StartW()
     Window.setPalette(palette)
     Window.show()
     sys.exit(app.exec())
